@@ -6,7 +6,7 @@ const App = () => {
   const [pokemon, setPokemon] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  loadPokeAPI(setPokemon, setIsLoading, isLoading);
+  loadPokeAPI(pokemon, setPokemon);
 
   return (
     <>
