@@ -1,11 +1,14 @@
 
 const Game = ({pokemon, isLoading}) => {
+
+    console.log('poke: ',pokemon);
+
 return(
     <>
-        {isLoading && pokemon.map(item=>{
+        {pokemon.map(item=>{
             return(
                 <div key={item.pokeName}>
-                    {item.pokeName}
+                    {item.pokeName}, {item.pokeUrl}
                 </div>
             )
         })}

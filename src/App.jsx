@@ -4,9 +4,9 @@ import {loadPokeAPI} from './components/00_loadPokeAPI';
 import Game from './components/Game';
 const App = () => {
   const [pokemon, setPokemon] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  loadPokeAPI(setPokemon,setIsLoading);
+  loadPokeAPI(setPokemon, setIsLoading, isLoading);
 
   return (
     <>
