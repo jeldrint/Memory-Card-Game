@@ -17,10 +17,8 @@ export const loadPokeAPI = (setPokemon, setIsLoading, isLoading) => {
         tempData.map(((item,index)=>setPokemon(
             prev => [...prev, {
                 pokeName: item.name,
-                pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index}.svg`
+                pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index+1}.svg`
             }]
         )))
     },[tempData])
-
-    
 }
