@@ -1,18 +1,20 @@
+import GameTester from './components/00_GameTester';
 import { useState } from 'react'
 import './App.css'
-import {loadPokeAPI} from './components/00_loadPokeAPI';
+import {loadPokeAPI} from './components/01_loadPokeAPI';
 import Game from './components/Game';
+
 const App = () => {
   const [pokemon, setPokemon] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [level, setLevel] = useState(12);
 
   loadPokeAPI(pokemon, setPokemon);
 
   return (
-    <>
+    <div className='container'>
       <h1>Memory Card</h1>
-      <Game pokemon={pokemon} isLoading={isLoading}/>    
-    </>
+      <Game pokemon={pokemon} level={level} />
+    </div>
   )
 }
 
