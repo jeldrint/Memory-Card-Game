@@ -19,6 +19,7 @@ export const loadPokeAPI = (pokemon, setPokemon) => {
                     id: index+1,
                     pokeName: item.name,
                     pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index+1}.svg`
+                    //pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${index+1}.png`
                 }]
             )))
         }
@@ -44,4 +45,10 @@ export const randomizeDivs = (pokeArr, setPokeArr) => {
     tempArr.push(randNum)
     })
     setPokeArr(tempArr)
+}
+
+export const setBest = (score, bestScore, setBestScore) => {
+    if(score > bestScore){
+        setBestScore(score);
+    }
 }

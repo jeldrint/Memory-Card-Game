@@ -2,10 +2,12 @@ import '../styles/Game.css'
 import { useEffect, useState } from "react"
 import { loadInitDiv } from './utils';
 import { randomizeDivs } from './utils';
+import { setBest } from './utils';
 
 const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}) => {
     const [pokeSelection, setPokeSelection] = useState([]);
     const [score, setScore] = useState(0);
+    const [bestScore, setBestScore] = useState(0);
     const [stage, setStage] = useState(1);
 
     useEffect(()=>{
@@ -34,38 +36,33 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
     },[youWin])
 
     const pokeClick = (e) => {
-        if(e.target.className === 'game-card'){  //if statement to restrain click listener to only the game cards
+        if(e.target.className === 'game-card' || e.target.parentNode.className === 'game-card'){  //if statement to restrain click listener to only the game cards
             if(!pokeSelection.includes(e.target.id)){
                 setPokeSelection(prev=>[...prev,e.target.id]);
-                setScore(prev => prev + 1);
-                randomizeDivs(pokeArr, setPokeArr)
-            }else{
-                setPokeSelection([]);
-                setScore(0);
-                setLevel(8);
-                setYouWin(true);
-            }
-        }else if(e.target.parentNode.className === 'game-card'){
-            if(!pokeSelection.includes(e.target.parentNode.id)){
+            }else if(!pokeSelection.includes(e.target.parentNode.id)){
                 setPokeSelection(prev=>[...prev,e.target.parentNode.id]);
-                setScore(prev => prev + 1);
-                randomizeDivs(pokeArr, setPokeArr)
             }else{
                 setPokeSelection([]);
                 setScore(0);
                 setLevel(8);
                 setStage(1);
                 setYouWin(true);
+                setBest(score, bestScore, setBestScore)
             }
-
+            setScore(prev => prev + 1);
+            randomizeDivs(pokeArr, setPokeArr)
         }
     }
 
     return(
         <>
-            <p>Score: {score}</p>
-            <p>Level: {stage}</p>
-            <div className="game-board">
+            <div className='game-header'>
+                <div style={{fontSize: '24px'}}>Pokemon Memory Card Game</div>
+                <div>
+                    <span style={{fontSize:'12px'}}>Score: <b>{score}</b> || Level: <b>{stage}</b> || Best Score: <b>{bestScore}</b></span>
+                </div>
+            </div>
+            <main className="game-board">
             {pokeArr.map((item) =>{
                 return (
                     <div key={item.id} className="game-card" id={item.pokeName} onClick={pokeClick}>
@@ -74,7 +71,11 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
                     </div>
                 )
             })}
-        </div>
+            </main>
+            <footer className='game-footer'>
+                <span>2023 {String.fromCharCode(169)} jeldrint || Memory Card ||<span> </span></span>
+                <a href='https://www.theodinproject.com/' target='_blank'>The Odin Project</a>
+            </footer>
         </>
     )
 }

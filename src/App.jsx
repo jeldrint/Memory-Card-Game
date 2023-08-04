@@ -13,7 +13,6 @@ const App = () => {
 
   return (
     <div className='container'>
-      <h1 style={{textAlign:'center'}}>Memory Card Game</h1>
       <Game pokemon={pokemon} level={level} setLevel={setLevel} pokeArr={pokeArr} setPokeArr={setPokeArr} youWin={youWin} setYouWin={setYouWin}/>
     </div>
   )

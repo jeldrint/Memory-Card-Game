@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Press+Start+2P&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Varela&family=Varela+Round&display=swap');
+
 .game-board {
     display: flex;
     align-items: center;
@@ -6,6 +8,17 @@
 
     row-gap: 40px;
     margin: 10px 50px;
+}
+
+.game-header{
+    background-color: aquamarine;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .game-card{
@@ -24,6 +37,11 @@
 }
 
 .game-card:hover{
-    /*background-color: rgba(108, 172, 222, 0.2);*/
     filter:invert(0);
+}
+
+.game-footer{
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
 }
