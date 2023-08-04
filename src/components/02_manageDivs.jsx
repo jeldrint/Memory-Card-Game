@@ -1,4 +1,3 @@
-
 export const loadInitDiv = (pokeArr, setPokeArr, level, pokemon) => {
     let tempArr = [];
 
@@ -10,17 +9,15 @@ export const loadInitDiv = (pokeArr, setPokeArr, level, pokemon) => {
                 tempArr.push(pokemon[randomIndex])
             }
         }    
+        setPokeArr(tempArr)
     }
-    setPokeArr(tempArr)
 }
 
 export const randomizeDivs = (pokeArr, setPokeArr) => {
     let tempArr = [];
-
     pokeArr.sort(()=>0.5-Math.random())
     .map(randNum =>{
     tempArr.push(randNum)
     })
-
     setPokeArr(tempArr)
 }

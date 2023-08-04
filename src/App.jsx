@@ -6,6 +6,7 @@ import Game from './components/Game';
 
 const App = () => {
   const [pokemon, setPokemon] = useState([]);
+  const [pokeArr, setPokeArr] = useState([]);
   const [level, setLevel] = useState(8);
 
   loadPokeAPI(pokemon, setPokemon);
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <div className='container'>
       <h1 style={{textAlign:'center'}}>Memory Card Game</h1>
-      <Game pokemon={pokemon} level={level} />
+      <Game pokemon={pokemon} level={level} setLevel={setLevel} pokeArr={pokeArr} setPokeArr={setPokeArr} />
     </div>
   )
 }
