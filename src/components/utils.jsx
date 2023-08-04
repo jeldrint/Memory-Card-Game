@@ -24,3 +24,24 @@ export const loadPokeAPI = (pokemon, setPokemon) => {
         }
     },[tempData])
 }
+
+export const loadInitDiv = (setPokeArr, level, pokemon) => {
+    let tempArr = [];
+    while(tempArr.length < level){
+        let randomIndex = Math.floor(Math.random() * 151);
+        if(!tempArr.includes(pokemon[randomIndex])){
+            tempArr.push(pokemon[randomIndex])
+        }
+    }    
+    setPokeArr(tempArr)
+
+}
+
+export const randomizeDivs = (pokeArr, setPokeArr) => {
+    let tempArr = [];
+    pokeArr.sort(()=>0.5-Math.random())
+    .map(randNum =>{
+    tempArr.push(randNum)
+    })
+    setPokeArr(tempArr)
+}

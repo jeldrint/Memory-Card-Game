@@ -1,18 +1,37 @@
 import '../styles/Game.css'
 import { useEffect, useState } from "react"
-import { loadInitDiv } from './02_manageDivs';
-import { randomizeDivs } from './02_manageDivs';
+import { loadInitDiv } from './utils';
+import { randomizeDivs } from './utils';
 
-const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr}) => {
+const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}) => {
     const [pokeSelection, setPokeSelection] = useState([]);
     const [score, setScore] = useState(0);
+    const [stage, setStage] = useState(1);
 
-    console.log(pokeArr)
     useEffect(()=>{
         if(pokemon.length != 0) {          //pokemon.length != 0 is for checking if pokemon array is already loaded
-            loadInitDiv(pokeArr, setPokeArr, level, pokemon);
+            loadInitDiv(setPokeArr, level, pokemon);
         }
     },[pokemon])
+
+    useEffect(()=>{
+        if(pokeSelection.length === level){
+            setPokeArr([]);
+            setPokeSelection([]);
+            setYouWin(true);
+            setStage(prev =>prev + 1);
+            if(level < 12){
+                setLevel(prev =>prev + 1);
+            }
+        }
+    },[pokeSelection])
+
+    useEffect(()=>{
+        if(youWin){
+            loadInitDiv(setPokeArr, level, pokemon);
+            setYouWin(false);
+        }
+    },[youWin])
 
     const pokeClick = (e) => {
         if(e.target.className === 'game-card'){  //if statement to restrain click listener to only the game cards
@@ -21,7 +40,10 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr}) => {
                 setScore(prev => prev + 1);
                 randomizeDivs(pokeArr, setPokeArr)
             }else{
+                setPokeSelection([]);
                 setScore(0);
+                setLevel(8);
+                setYouWin(true);
             }
         }else if(e.target.parentNode.className === 'game-card'){
             if(!pokeSelection.includes(e.target.parentNode.id)){
@@ -31,27 +53,23 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr}) => {
             }else{
                 setPokeSelection([]);
                 setScore(0);
+                setLevel(8);
+                setStage(1);
+                setYouWin(true);
             }
 
-        }
-        console.log(pokeSelection.length, level)
-
-        if(pokeSelection.length === level){
-            console.log('proceed')
-            setLevel(prev =>prev + 2);
-            setPokeArr([]);
-            loadInitDiv(pokeArr, setPokeArr, level, pokemon);
         }
     }
 
     return(
         <>
-            <p>{score}, {pokeSelection}</p>
+            <p>Score: {score}</p>
+            <p>Level: {stage}</p>
             <div className="game-board">
             {pokeArr.map((item) =>{
                 return (
                     <div key={item.id} className="game-card" id={item.pokeName} onClick={pokeClick}>
-                        <img src={item.pokeUrl} style={{height: '130px'}}/>
+                        <img src={item.pokeUrl} style={{height: '130px', maxWidth: '150px'}}/>
                         <span>{item.pokeName}</span>
                     </div>
                 )
