@@ -64,15 +64,21 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
                     <span style={{fontSize:'12px'}}>Score: <b>{score}</b> || Level: <b>{stage}</b> || Best Score: <b>{bestScore}</b></span>
                 </div>
             </div>
-            <main className="game-board">
-            {pokeArr.map((item) =>{
-                return (
-                    <div key={item.id} className="game-card" id={item.pokeName} onClick={pokeClick}>
-                        <img src={item.pokeUrl} style={{height: '130px', maxWidth: '150px'}}/>
-                        <span>{item.pokeName}</span>
-                    </div>
-                )
-            })}
+            <div style={{fontSize: '13px', textAlign:'center', padding:'15px 0', backgroundColor:'aquamarine', width:'100%'}}>
+                    Instructions: Click on pokemon but never click twice.
+                    <br /><br />Aim to beat the Best Score!
+            </div>
+            <main className='main'>
+                <div className="game-board">
+                {pokeArr.map((item) =>{
+                    return (
+                        <div key={item.id} className="game-card" id={item.pokeName} onClick={pokeClick}>
+                            <img src={item.pokeUrl} style={{height: '130px', maxWidth: '150px'}}/>
+                            <span>{item.pokeName}</span>
+                        </div>
+                    )
+                })}
+                </div>
             </main>
             <footer className='game-footer'>
                 <span>2023 {String.fromCharCode(169)} jeldrint || Memory Card ||<span> </span></span>
