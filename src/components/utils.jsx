@@ -19,7 +19,6 @@ export const loadPokeAPI = (pokemon, setPokemon) => {
                     id: index+1,
                     pokeName: item.name,
                     pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index+1}.svg`
-                    //pokeUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${index+1}.png`
                 }]
             )))
         }
@@ -40,7 +39,7 @@ export const loadInitDiv = (setPokeArr, level, pokemon) => {
 
 export const randomizeDivs = (pokeArr, setPokeArr) => {
     let tempArr = [];
-    pokeArr.sort(()=>0.5-Math.random())
+    pokeArr.sort(()=>0.5-Math.random()).sort(()=>0.5-Math.random())
     .map(randNum =>{
     tempArr.push(randNum)
     })

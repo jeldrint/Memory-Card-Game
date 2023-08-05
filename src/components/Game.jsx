@@ -36,11 +36,15 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
     },[youWin])
 
     const pokeClick = (e) => {
+        let eTargetName = '';
+
         if(e.target.className === 'game-card' || e.target.parentNode.className === 'game-card'){  //if statement to restrain click listener to only the game cards
-            if(!pokeSelection.includes(e.target.id)){
-                setPokeSelection(prev=>[...prev,e.target.id]);
-            }else if(!pokeSelection.includes(e.target.parentNode.id)){
-                setPokeSelection(prev=>[...prev,e.target.parentNode.id]);
+            e.target.id ? eTargetName = e.target.id: eTargetName = e.target.parentNode.id;
+
+            if(!pokeSelection.includes(eTargetName)){
+                setPokeSelection(prev=>[...prev,eTargetName]);
+                setScore(prev => prev + 1);
+                randomizeDivs(pokeArr, setPokeArr)
             }else{
                 setPokeSelection([]);
                 setScore(0);
@@ -49,8 +53,6 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
                 setYouWin(true);
                 setBest(score, bestScore, setBestScore)
             }
-            setScore(prev => prev + 1);
-            randomizeDivs(pokeArr, setPokeArr)
         }
     }
 
