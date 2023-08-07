@@ -73,7 +73,7 @@ const Game = ({pokemon, level, setLevel, pokeArr, setPokeArr, youWin, setYouWin}
                 {pokeArr.map((item) =>{
                     return (
                         <div key={item.id} className="game-card" id={item.pokeName} onClick={pokeClick}>
-                            <img src={item.pokeUrl} style={{height: '130px', maxWidth: '150px'}}/>
+                            <img src={item.pokeUrl} style={{maxHeight: '100px', minWidth: '100px'}}/>
                             <span>{item.pokeName}</span>
                         </div>
                     )
